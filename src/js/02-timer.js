@@ -53,6 +53,8 @@ function addLeadingZero(value) {
 }
 
 function onclick() {
+  btnStart.disabled = true;
+  date.disabled = true;
   timer = setInterval(() => {
     const countdown = new Date(date.value) - new Date();
     const { days, hours, minutes, seconds } = convertMs(countdown);
@@ -62,28 +64,8 @@ function onclick() {
     sec.textContent = addLeadingZero(seconds);
     if (countdown < 1000) {
       Notiflix.Notify.success('Time is over');
+      date.disabled = false;
       clearInterval(timer);
     }
   }, 1000);
 }
-
-// btnStart.addEventListener('click', () => {
-//   timer = setInterval(() => {
-//     const countdown = new Date(date.value) - new Date();
-//     btnStart.disabled = true;
-//     if (countdown >= 0) {
-//       const timeObject = convertMs(countdown);
-//       day.textContent = addLeadingZero(timeObject.days);
-//       hour.textContent = addLeadingZero(timeObject.hours);
-//       min.textContent = addLeadingZero(timeObject.minutes);
-//       sec.textContent = addLeadingZero(timeObject.seconds);
-//       if (countdown < 20000) {
-//         timerValue.style.color = 'red';
-//       }
-//     } else {
-
-//       timerValue.style.color = 'black';
-//       clearInterval(timer);
-//     }
-//   }, 1000);
-// });
